@@ -1,0 +1,16 @@
+{% extends "base_template.html" %}
+{% load static %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ new_message_form.as_p }}
+    <button type="submit" class="btn btn-primary"><strong class="btn-text">Submit</strong></button>
+
+</form>
+{% if messages %}
+{% for message in messages %}
+<h2>{{message.content}}</h2>
+<p>{{message.creator}} from {{message.ip}} at {{message.date}}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

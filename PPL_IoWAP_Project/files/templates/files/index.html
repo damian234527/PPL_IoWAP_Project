@@ -1,0 +1,10 @@
+{% extends "base_template.html" %}
+{% load static %}
+{% block content %}
+<button class="btn btn-primary" hx-get="{% url 'files:file_upload' %}" hx-target="#dialog">
+    <strong class="btn-text">Add new file</strong>
+</button>
+<div class="files-list" id="files-list" hx-trigger="load, file_list_changed from:body" hx-get="{% url 'files:files_list' %}" hx-target="this">
+
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irytująca Strona</title>
+    <style>
+        body {
+            animation: flicker 0.1s infinite;
+            overflow: hidden;
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                background-color: white;
+            }
+            50% {
+                background-color: black;
+            }
+        }
+
+        .moving-element {
+            position: absolute;
+            animation: moveElement 2s infinite alternate;
+        }
+
+        @keyframes moveElement {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: calc(100% - 100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio controls autoplay>
+      <source src="{% static 'mjusik.mp3' %}" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <div class="moving-element">    <img src="https://i1.jbzd.com.pl/contents/2020/04/social/05n9j1Vb4ScTjvg5Kc3Imq633fMEYL1u.jpg" class="card-img-top">
+</div>
+    <h1>Irytująca Strona</h1>
+    <p>Tekst na irytującej stronie.</p>
+</body>
+</html>
