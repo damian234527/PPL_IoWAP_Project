@@ -7,10 +7,7 @@
     <button type="submit" class="btn btn-primary"><strong class="btn-text">Submit</strong></button>
 
 </form>
-{% if messages %}
-{% for message in messages %}
-<h2>{{message.content}}</h2>
-<p>{{message.creator}} from {{message.ip}} at {{message.date}}</p>
-{% endfor %}
-{% endif %}
+<div class="messages-list" id="messages-list" hx-trigger="load, messages_list_changed from:body" hx-get="{% url 'home:messages_list' %}" hx-target="this">
+
+</div>
 {% endblock %}

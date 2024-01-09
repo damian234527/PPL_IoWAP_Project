@@ -8,7 +8,6 @@ def welcome_page(request):
 
 
 def home_page(request):
-    messages = Message.objects.all()
     if request.method == "POST":
         new_message_form = forms.MessageForm(request.POST)
         if new_message_form.is_valid():
@@ -21,4 +20,8 @@ def home_page(request):
             new_message.save()
     else:
         new_message_form = forms.MessageForm()
-    return render(request, "home/home_page.html", {"messages": messages, "new_message_form": new_message_form})
+    return render(request, "home/home_page.html", {"new_message_form": new_message_form})
+
+def messages_list(request):
+    messages = Message.objects.all().order_by('-date').values()
+    return render(request, "home/messages_list.html", {"messages": messages})

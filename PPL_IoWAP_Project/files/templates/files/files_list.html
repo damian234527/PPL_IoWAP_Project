@@ -1,15 +1,18 @@
 {% if files %}
-{% for file in files %}
-<h2>{{file.name}}</h2>
-
-<p>{{file.file}}
-<a href="{% url 'files:file_download' file.id %}" class="btn btn-primary">
-    <strong class="btn-text">Download</strong>
-</a>
-</p>
-<p>{{file.description}}</p>
-<p>{{file.date}}</p>
-{% endfor %}
+<div class="list">
+    {% for file in files %}
+    <div class="list-item">
+        <a href="{% url 'files:file_download' file.id %}" class="btn btn-primary" style="float: right;">
+            <strong class="btn-text">Download</strong>
+        </a>
+        <h3>{{file.name}}</h3>
+        <h5>{{file.filename}}
+        </h5>
+        <p>{{file.description}}</p>
+        <i>{{file.date}}</i>
+    </div>
+    {% endfor %}
+</div>
 {% else %}
-<p> Nothing here, you can add files.</p>
+<h3> Nothing here, you can add files.</h3>
 {% endif %}

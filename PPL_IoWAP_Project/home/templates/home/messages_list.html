@@ -1,0 +1,12 @@
+{% if messages %}
+<div class="list">
+{% for message in messages %}
+    <div class="list-item">
+        <h2>{{message.content}}</h2>
+        <p>{{message.creator}} from {{message.ip}} at {{message.date|date:"d.m.Y G:i" }}</p>
+    </div>
+{% endfor %}
+</div>
+{% else %}
+<h3>Nothing here, you can add new messages.</h3>
+{% endif %}

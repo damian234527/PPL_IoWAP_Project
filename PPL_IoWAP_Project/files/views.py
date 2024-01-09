@@ -12,7 +12,7 @@ def index(request):
 
 
 def files_list(request):
-    files = File.objects.all()
+    files = File.objects.all().order_by('-date').values()
     return render(request, "files/files_list.html", {"files": files})
 
 
