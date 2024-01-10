@@ -1,2 +1,15 @@
 {% extends "base_template.html" %}
 {% load static %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ prompt_form.as_p }}
+    <button type="submit" class="btn btn-primary"><strong class="btn-text">Submit</strong></button>
+
+</form>
+<div class="prompts-list" id="prompts-list" hx-trigger="load, prompts_list_changed from:body" hx-get="{% url 'help:prompts_list' %}" hx-target="this">
+
+</div>
+
+{% endblock %}
+

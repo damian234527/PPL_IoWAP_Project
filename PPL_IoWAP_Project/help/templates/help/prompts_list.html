@@ -1,0 +1,36 @@
+{% if page_obj %}
+<div class="list">
+{% for prompt in page_obj %}
+    <div class="list-item">
+        <h2>{{prompt.question}}</h2>
+        <p>{{prompt.answer}} </p>
+        <i>from {{prompt.ip}} at {{prompt.date|date:"d.m.Y G:i" }}</i>
+    {% for answer in prompt.answer_set.all %}
+        <div class="sublist-item">
+            <h5>{{ answer.answer }}</h5>
+            <cite style="float: right;">{{ answer.reference }}</cite>
+        </div>
+    {% endfor %}
+    </div>
+{% endfor %}
+</div>
+{% else %}
+<h3>Nothing here, you can ask new question.</h3>
+{% endif %}
+<div class="pagination" hx-target="#prompts-list">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="{% url 'help:prompts_list' %}?page=1" hx-get="{% url 'help:prompts_list' %}?page=1">&laquo; first</a>
+            <a href="{% url 'help:prompts_list' %}?page={{ page_obj.previous_page_number }}" hx-get="{% url 'help:prompts_list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="{% url 'help:prompts_list' %}?page={{ page_obj.next_page_number }}" hx-get="{% url 'help:prompts_list' %}?page={{ page_obj.next_page_number }}">next</a>
+            <a href="{% url 'help:prompts_list' %}?page={{ page_obj.paginator.num_pages }}" hx-get="{% url 'help:prompts_list' %}?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>

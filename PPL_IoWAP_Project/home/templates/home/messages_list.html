@@ -3,7 +3,8 @@
 {% for message in messages %}
     <div class="list-item">
         <h2>{{message.content}}</h2>
-        <p>{{message.creator}} from {{message.ip}} at {{message.date|date:"d.m.Y G:i" }}</p>
+        <p>{{message.creator}}</p>
+        <i>from {{message.ip}} at {{message.date|date:"d.m.Y G:i" }}</i>
     </div>
 {% endfor %}
 </div>
